@@ -8,6 +8,8 @@
 // mais aussi d'activer le chargement automatique des classes (convention PSR-4)
 require_once '../vendor/autoload.php';
 
+use App\Controllers\MainController;
+
 /* ------------
 --- ROUTAGE ---
 -------------*/
@@ -45,11 +47,46 @@ $router->map(
     '/',
     [
         'method' => 'home',
-        'controller' => '\App\Controllers\MainController' // On indique le FQCN de la classe
+        'controller' =>  MainController::class  // ou comme ça '\App\Controllers\MainController' // On indique le FQCN de la classe
     ],
     'main-home'
 );
-
+$router->map(
+    "GET",
+    "/categories",
+    [
+        "method" => "category",
+        "controller" => MainController::class
+    ],
+    "main-category"
+);
+$router->map(
+    "GET",
+    "/produits",
+    [
+        "method" => "product",
+        "controller" => MainController::class
+    ],
+    "main-product"
+);
+$router->map(
+    "GET",
+    "/ajouter-categories",
+    [
+        "method" => "addCategory",
+        "controller" => MainController::class
+    ],
+    "main-add-category"
+);
+$router->map(
+    "GET",
+    "/ajouter-produits",
+    [
+        "method" => "addProduct",
+        "controller" => MainController::class
+    ],
+    "main-add-product"
+);
 
 /* -------------
 --- DISPATCH ---
