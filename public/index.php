@@ -53,6 +53,7 @@ $router->map(
     ],
     'main-home'
 );
+// category-----------------------------------------------------------
 $router->map(
     "GET",
     "/categories",
@@ -72,6 +73,17 @@ $router->map(
     "category-add"
 );
 $router->map(
+    "POST",
+    "/category/add",
+    [
+        "method" => "create",
+        "controller" => CategoryController::class,
+    ],
+    "category-create"
+);
+
+//produit--------------------------------------------------------------
+$router->map(
     "GET",
     "/products",
     [
@@ -88,6 +100,15 @@ $router->map(
         "controller" => ProductController::class
     ],
     "product-add"
+);
+$router->map(
+    "POST",
+    "/product/add",
+    [
+        "method" => "create",
+        "controller" => ProductController::class
+    ],
+    "product-create,"
 );
 
 /* -------------

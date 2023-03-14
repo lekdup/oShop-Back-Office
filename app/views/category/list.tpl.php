@@ -1,5 +1,5 @@
 <?php 
-dump($allCategories);
+// dump($allCategories);
 ?>
 
 <div class="container my-4">
@@ -38,6 +38,6 @@ dump($allCategories);
                 </td>
             </tr>
             <?php endforeach ; ?>
-        </tbody>
+        </tbody> 
     </table>
 </div>

@@ -39,7 +39,7 @@ class CoreController
         // => la variable $baseUri existe désormais, et sa valeur est $_SERVER['BASE_URI']
         // => il en va de même pour chaque élément du tableau
         
-        dump(get_defined_vars());
+        // dump(get_defined_vars());
 
 
         // $viewData est disponible dans chaque fichier de vue

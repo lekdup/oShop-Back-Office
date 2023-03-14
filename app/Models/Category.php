@@ -151,4 +151,22 @@ class Category extends CoreModel
 
         return $categories;
     }
+
+    public function insert()
+    {
+        $pdo = Database::getPDO();
+        $sql = "
+            INSERT INTO `category` (name, subtitle, picture)
+            VALUES ('{$this->name}', '{$this->subtitle}', '{$this->picture}')
+        ";
+        $insertedRows = $pdo->exec($sql);
+        if($insertedRows > 0){
+            $this->id = $pdo->lastInsertId();
+            header("Location: /categories");
+            exit;
+            return true;
+        }
+
+        return false;
+    }
 }
