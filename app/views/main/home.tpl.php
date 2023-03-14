@@ -81,7 +81,7 @@
                             </tbody>
                         </table>
                         <div class="d-grid gap-2">
-                            <a href="<?= $router->generate("main-category") ?>" class="btn btn-success">Voir plus</a>
+                            <a href="/categories" class="btn btn-success">Voir plus</a>
                         </div>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                             </tbody>
                         </table>
                         <div class="d-grid gap-2">
-                            <a href="<?= $router->generate("main-product") ?>" class="btn btn-success">Voir plus</a>
+                            <a href="/products" class="btn btn-success">Voir plus</a>
                         </div>
                     </div>
                 </div>

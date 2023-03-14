@@ -8,8 +8,7 @@
     <title>oShop BackOffice</title>
 
     <!-- Getting bootstrap (and reboot.css) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://bootswatch.com/5/darkly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <!--
         And getting Font Awesome 4.7 (free)
         To get HTML code icons : https://fontawesome.com/v4.7.0/icons/

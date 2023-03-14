@@ -111,7 +111,7 @@ class Category extends CoreModel
         $pdoStatement = $pdo->query($sql);
 
         // un seul résultat => fetchObject
-        $category = $pdoStatement->fetchObject('App\Models\Category');
+        $category = $pdoStatement->fetchObject( self::class );
 
         // retourner le résultat
         return $category;
@@ -127,7 +127,7 @@ class Category extends CoreModel
         $pdo = Database::getPDO();
         $sql = 'SELECT * FROM `category`';
         $pdoStatement = $pdo->query($sql);
-        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\Category');
+        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
 
         return $results;
     }
@@ -147,7 +147,7 @@ class Category extends CoreModel
             ORDER BY home_order ASC
         ';
         $pdoStatement = $pdo->query($sql);
-        $categories = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\Category');
+        $categories = $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
 
         return $categories;
     }

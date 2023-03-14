@@ -9,6 +9,8 @@
 require_once '../vendor/autoload.php';
 
 use App\Controllers\MainController;
+use App\Controllers\CategoryController;
+use App\Controllers\ProductController;
 
 /* ------------
 --- ROUTAGE ---
@@ -55,37 +57,37 @@ $router->map(
     "GET",
     "/categories",
     [
-        "method" => "category",
-        "controller" => MainController::class
+        "method" => "list",
+        "controller" => CategoryController::class
     ],
-    "main-category"
+    "category-list"
 );
 $router->map(
     "GET",
-    "/produits",
+    "/category/add",
     [
-        "method" => "product",
-        "controller" => MainController::class
+        "method" => "add",
+        "controller" => CategoryController::class
     ],
-    "main-product"
+    "category-add"
 );
 $router->map(
     "GET",
-    "/ajouter-categories",
+    "/products",
     [
-        "method" => "addCategory",
-        "controller" => MainController::class
+        "method" => "list",
+        "controller" => ProductController::class
     ],
-    "main-add-category"
+    "product-list"
 );
 $router->map(
     "GET",
-    "/ajouter-produits",
+    "/product/add",
     [
-        "method" => "addProduct",
-        "controller" => MainController::class
+        "method" => "add",
+        "controller" => ProductController::class
     ],
-    "main-add-product"
+    "product-add"
 );
 
 /* -------------

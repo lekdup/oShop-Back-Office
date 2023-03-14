@@ -38,11 +38,7 @@ class CoreController
         // => la variable $assetsBaseUri existe désormais, et sa valeur est $_SERVER['BASE_URI'] . '/assets/'
         // => la variable $baseUri existe désormais, et sa valeur est $_SERVER['BASE_URI']
         // => il en va de même pour chaque élément du tableau
-        $categoryModel = new Category();
-        $allCategories = $categoryModel->findAll();
-
-        $productModel = new Product();
-        $allProducts = $productModel->findAll();
+        
         dump(get_defined_vars());
 
 

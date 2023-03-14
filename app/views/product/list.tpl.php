@@ -1,25 +1,26 @@
-<?php 
-dump($allCategories);
-?>
 
 <div class="container my-4">
-        <a href="<?= $router->generate("main-add-category") ?>" class="btn btn-success float-end">Ajouter</a>
-        <h2>Liste des catégories</h2>
+        <a href="/product/add" class="btn btn-success float-end">Ajouter</a>
+        <h2>Liste des produits</h2>
         <table class="table table-hover mt-4">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nom</th>
-                    <th scope="col">Sous-titre</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Prix</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($allCategories as $category) : ?>
+                <?php foreach($allProducts as $product) : ?>
                 <tr>
-                    <th scope="row"><?= $category->getId(); ?></th>
-                    <td><?= $category->getName(); ?></td>
-                    <td><?= $category->getSubtitle(); ?></td>
+                    <th scope="row"><?= $product->getId(); ?></th>
+                    <td><?= $product->getName(); ?></td>
+                    <td><img src="<?= $product->getPicture(); ?>" alt=""></td>
+                    <td><?= $product->getDescription(); ?></td>
+                    <td><?= $product->getPrice(); ?> €</td>
                     <td class="text-end">
                         <a href="" class="btn btn-sm btn-warning">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

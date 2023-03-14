@@ -13,10 +13,10 @@
                         <a class="nav-link active" href="<?= $router->generate("main-home") ?>">Accueil <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $router->generate("main-category") ?>">Catégories</a>
+                        <a class="nav-link" href="/categories">Catégories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $router->generate("main-product") ?>">Produits</a>
+                        <a class="nav-link" href="/products">Produits</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Types</a>
