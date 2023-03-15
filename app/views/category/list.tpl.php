@@ -21,12 +21,12 @@
                 <td><?= $category->getName(); ?></td>
                 <td><?= $category->getSubtitle(); ?></td>
                 <td class="text-end">
-                    <a href="" class="btn btn-sm btn-warning">
+                    <a href="<?= $router->generate("category-update") ?>" title="Update" class="btn btn-sm btn-warning">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
                     <!-- Example single danger button -->
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-danger dropdown-toggle"
+                        <button type="button"  class="btn btn-sm btn-danger dropdown-toggle"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                         </button>

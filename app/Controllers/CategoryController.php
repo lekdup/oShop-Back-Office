@@ -47,6 +47,7 @@ class CategoryController extends CoreController
             $category->setSubtitle($subtitle);
             $category->setPicture($picture);
             $category->setHomeOrder(0);
+
             if($category->insert()){
                 header("Location: /category/list");
                 exit;
@@ -60,5 +61,16 @@ class CategoryController extends CoreController
             }
         }
         $this->show("category/add");
+    }
+
+    public function update($id)
+    {
+        $categoryModel = new Category();
+        $categoryUpdate = $categoryModel->find($id);
+
+        $this->show("category/add/$id",
+        [
+            "categoryUpdate" => $categoryUpdate,
+        ]);
     }
 }

@@ -277,14 +277,46 @@ class Product extends CoreModel
     {
         $pdo = Database::getPDO();
         $sql = "
-            INSERT INTO `product` (name, description, picture, price)
-            VALUES ('{$this->name}', '{$this->description}', '{$this->picture}', '{$this->price}')
+            INSERT INTO `product` (
+                name, 
+                description, 
+                picture, 
+                price,
+                rate,
+                status,
+                brand_id,
+                category_id,
+                type_id,
+            )
+            VALUES (
+                :name,
+                :description,
+                :picture,
+                :price,
+                :rate,
+                :status,
+                :brand_id,
+                :category_id,
+                :type_id,
+            )
         ";
-        $insertedRows = $pdo->exec($sql);
-        if($insertedRows > 0){
+
+        $query = $pdo->prepare($sql);
+
+        $query->bindValue(":name",          $this->name,        PDO::PARAM_STR);
+        $query->bindValue(":description",   $this->description, PDO::PARAM_STR);
+        $query->bindValue(":picture",       $this->picture,     PDO::PARAM_STR);
+        $query->bindValue(":price",         $this->price,       PDO::PARAM_STR);
+        $query->bindValue(":rate",          $this->rate,        PDO::PARAM_STR);
+        $query->bindValue(":status",        $this->status,      PDO::PARAM_STR);
+        $query->bindValue(":brand_id",      $this->brand_id,    PDO::PARAM_STR);
+        $query->bindValue(":category_id",   $this->category_id, PDO::PARAM_STR);
+        $query->bindValue(":type_id",       $this->type_id,     PDO::PARAM_STR);
+
+        $query->execute();
+
+        if($query->rowCount() > 0){
             $this->id = $pdo->lastInsertId();
-            header("Location, /products");
-            exit;
             return true;
         }
 

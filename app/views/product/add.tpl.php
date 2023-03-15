@@ -71,7 +71,7 @@
         </div>
         <div class="mb-3">
             <label for="status">Statut</label>
-            <select class="form-control" id="status" aria-describedby="statusHelpBlock">
+            <select class="form-control" id="status" name="status" aria-describedby="statusHelpBlock">
                 <option value="0">Inactif</option>
                 <option value="1">Actif</option>
             </select>
@@ -81,7 +81,7 @@
         </div>
         <div class="mb-3">
             <label for="category">Categorie</label>
-            <select class="form-control" id="category" aria-describedby="categoryHelpBlock">
+            <select class="form-control" id="category" name="category_id" aria-describedby="categoryHelpBlock">
                 <option value="1">Détente</option>
                 <option value="2">Au travail</option>
                 <option value="3">Cérémonie</option>
@@ -92,7 +92,7 @@
         </div>
         <div class="mb-3">
             <label for="brand">Marque</label>
-            <select  class="form-control" id="brand" aria-describedby="brandHelpBlock">
+            <select  class="form-control" id="brand" name="brand_id" aria-describedby="brandHelpBlock">
                 <option value="1">oCirage</option>
                 <option value="2">BOOTstrap</option>
                 <option value="3">Talonette</option>
@@ -103,7 +103,7 @@
         </div>
         <div class="mb-3">
             <label for="type">Type</label>
-            <select class="form-control" id="type" aria-describedby="typeHelpBlock">
+            <select class="form-control" id="type" name="type_id" aria-describedby="typeHelpBlock">
                 <option value="1">Chaussures de ville</option>
                 <option value="2">Chaussures de sport</option>
                 <option value="3">Tongs</option>

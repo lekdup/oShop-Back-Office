@@ -81,6 +81,15 @@ $router->map(
     ],
     "category-create"
 );
+$router->map(
+    "POST",
+    "/category/add/[i:id]",
+    [
+        "method" => "update",
+        "controller" => CategoryController::class,
+    ],
+    "category-update",
+);
 
 //produit--------------------------------------------------------------
 $router->map(
