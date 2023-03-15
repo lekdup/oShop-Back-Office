@@ -56,7 +56,7 @@ $router->map(
 // category-----------------------------------------------------------
 $router->map(
     "GET",
-    "/categories",
+    "/category/list",
     [
         "method" => "list",
         "controller" => CategoryController::class
@@ -85,7 +85,7 @@ $router->map(
 //produit--------------------------------------------------------------
 $router->map(
     "GET",
-    "/products",
+    "/product/list",
     [
         "method" => "list",
         "controller" => ProductController::class

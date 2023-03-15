@@ -1,6 +1,6 @@
 
 <div class="container my-4">
-        <a href="/product/add" class="btn btn-success float-end">Ajouter</a>
+        <a href="<?= $router->generate("product-add") ?>" class="btn btn-success float-end">Ajouter</a>
         <h2>Liste des produits</h2>
         <table class="table table-hover mt-4">
             <thead>
@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($allProducts as $product) : ?>
+                <?php foreach($products as $product) : ?>
                 <tr>
                     <th scope="row"><?= $product->getId(); ?></th>
                     <td><?= $product->getName(); ?></td>

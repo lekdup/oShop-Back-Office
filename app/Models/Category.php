@@ -99,7 +99,7 @@ class Category extends CoreModel
      * @param int $categoryId ID de la catégorie
      * @return Category
      */
-    public function find($categoryId)
+    static public function find($categoryId)
     {
         // se connecter à la BDD
         $pdo = Database::getPDO();
@@ -122,7 +122,7 @@ class Category extends CoreModel
      *
      * @return Category[]
      */
-    public function findAll()
+    static public function findAll()
     {
         $pdo = Database::getPDO();
         $sql = 'SELECT * FROM `category`';
@@ -156,14 +156,19 @@ class Category extends CoreModel
     {
         $pdo = Database::getPDO();
         $sql = "
-            INSERT INTO `category` (name, subtitle, picture)
-            VALUES ('{$this->name}', '{$this->subtitle}', '{$this->picture}')
+            INSERT INTO `category` (name, subtitle, picture, home_order)
+            VALUES (:name, :subtitle, :picture, :home_order)
         ";
-        $insertedRows = $pdo->exec($sql);
-        if($insertedRows > 0){
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(":name",       $this->name,        PDO::PARAM_STR);
+        $pdoStatement->bindValue(":subtitle",   $this->subtitle,    PDO::PARAM_STR);
+        $pdoStatement->bindValue(":picture",    $this->picture,     PDO::PARAM_STR);
+        $pdoStatement->bindValue(":home_order", $this->home_order,  PDO::PARAM_INT);
+
+        $pdoStatement->execute();
+        if($pdoStatement->rowCount() === 1){
             $this->id = $pdo->lastInsertId();
-            header("Location: /categories");
-            exit;
             return true;
         }
 

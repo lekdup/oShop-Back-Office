@@ -8,11 +8,10 @@ class ProductController extends CoreController
 {
     public function list()
     {
-        $productModel = new Product();
-        $allProducts = $productModel->findAll();
+        $products = Product::findAll();
         $this->show("product/list",
     [
-        "allProducts" => $allProducts,
+        "products" => $products,
     ]);
     }
     public function add()
