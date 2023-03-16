@@ -82,13 +82,32 @@ $router->map(
     "category-create"
 );
 $router->map(
-    "POST",
-    "/category/add/[i:id]",
+    "GET",
+    "/category/[i:id]/update",
     [
         "method" => "update",
         "controller" => CategoryController::class,
     ],
     "category-update",
+);
+$router->map(
+    "POST",
+    "/category/[i:id]/update",
+    [
+        "method" => "edit",
+        "controller" => CategoryController::class,
+    ],
+    "category-edit",
+);
+
+$router->map(
+    "GET",
+    "/category/[i:id]/delete",
+    [
+        "method" => "delete",
+        "controller" => CategoryController::class,
+    ],
+    "category-delete",
 );
 
 //produit--------------------------------------------------------------

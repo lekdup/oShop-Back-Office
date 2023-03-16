@@ -80,7 +80,7 @@ class ProductController extends CoreController
             $product->setTypeId($type_id);
 
             if($product->insert()){
-                header("Location, /category/list");
+                header("Location: /product/list");
                 exit;
             } else {
                 echo "Echec de la sauvegarde en BDD";

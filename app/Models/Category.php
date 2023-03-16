@@ -108,7 +108,11 @@ class Category extends CoreModel
         $sql = 'SELECT * FROM `category` WHERE `id` =' . $categoryId;
 
         // exécuter notre requête
-        $pdoStatement = $pdo->query($sql);
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(":id", $categoryId, PDO::PARAM_INT);
+
+        $pdoStatement->execute();
 
         // un seul résultat => fetchObject
         $category = $pdoStatement->fetchObject( self::class );
@@ -173,5 +177,65 @@ class Category extends CoreModel
         }
 
         return false;
+    }
+
+    public function update()
+    {
+        $pdo = Database::getPDO();
+        $sql = "UPDATE `category` SET 
+                `name`          = :name, 
+                `subtitle`      = :subtitle,
+                `picture`       = :picture,
+                `home_order`    = :home_order,
+                `updated_at`    = NOW()
+                WHERE `id` = :id
+        ";
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->bindValue(":name",       $this->name,        PDO::PARAM_STR);
+        $pdoStatement->bindValue(":subtitle",   $this->subtitle,    PDO::PARAM_STR);
+        $pdoStatement->bindValue(":picture",    $this->picture,     PDO::PARAM_STR);
+        $pdoStatement->bindValue(":home_order", $this->home_order,  PDO::PARAM_INT);
+        $pdoStatement->bindValue(":id",         $this->id,          PDO::PARAM_INT);
+
+        $pdoStatement->execute();
+
+        if($pdoStatement->rowCount() === 1){
+            return true;
+        }
+        return false;
+    }
+
+    public function save()
+    {
+        if($this->id){
+            return $this->update();
+        }else {
+            return $this->insert();
+        }
+    }
+
+    public function delete()
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "DELETE FROM `category`
+                WHERE `id` = :id";
+
+        $pdoStatement = $pdo->prepare($sql);
+
+        $pdoStatement->execute([
+            //version alternative à bindValue() + execute()
+            "id" => $this->id
+        ]);
+
+
+        if($pdoStatement->rowCount() === 1){
+            return true;
+        } else {
+            return false;
+        }
+
+        return $pdoStatement->rowCount() === 1;
     }
 }

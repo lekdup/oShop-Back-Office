@@ -307,11 +307,11 @@ class Product extends CoreModel
         $query->bindValue(":description",   $this->description, PDO::PARAM_STR);
         $query->bindValue(":picture",       $this->picture,     PDO::PARAM_STR);
         $query->bindValue(":price",         $this->price,       PDO::PARAM_STR);
-        $query->bindValue(":rate",          $this->rate,        PDO::PARAM_STR);
-        $query->bindValue(":status",        $this->status,      PDO::PARAM_STR);
-        $query->bindValue(":brand_id",      $this->brand_id,    PDO::PARAM_STR);
-        $query->bindValue(":category_id",   $this->category_id, PDO::PARAM_STR);
-        $query->bindValue(":type_id",       $this->type_id,     PDO::PARAM_STR);
+        $query->bindValue(":rate",          $this->rate,        PDO::PARAM_INT);
+        $query->bindValue(":status",        $this->status,      PDO::PARAM_INT);
+        $query->bindValue(":brand_id",      $this->brand_id,    PDO::PARAM_INT);
+        $query->bindValue(":category_id",   $this->category_id, PDO::PARAM_INT);
+        $query->bindValue(":type_id",       $this->type_id,     PDO::PARAM_INT);
 
         $query->execute();
 

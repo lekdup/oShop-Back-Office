@@ -65,12 +65,58 @@ class CategoryController extends CoreController
 
     public function update($id)
     {
-        $categoryModel = new Category();
-        $categoryUpdate = $categoryModel->find($id);
+        $categoryObject = Category::find($id);
 
-        $this->show("category/add/$id",
+        $this->show("category/edit",
         [
-            "categoryUpdate" => $categoryUpdate,
+            "categoryObject" => $categoryObject,
         ]);
+    }
+    public function edit($id)
+    {
+        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+        $subtitle = filter_input(INPUT_POST, "subtitle", FILTER_SANITIZE_STRING);
+        $picture = filter_input(INPUT_POST, "picture", FILTER_VALIDATE_URL);
+        
+        $errorList = [];
+
+        if(empty($name)){
+            $errorList[] = "Le nom de la catégorie est vide";
+        }
+        //subtitle peut être null en BDD donc on peut ne pas le vérifier
+        if($picture === false){
+            $errorList[] = "L'URL d'image est invalide";
+        }
+
+        if(empty($errorList)){
+            $category = Category::find($id);
+
+            $category->setName($name);
+            $category->setSubtitle($subtitle);
+            $category->setPicture($picture);
+            $category->setHomeOrder(0);
+
+            if($category->save()){
+                header("Location: /category/list");
+                exit;
+            } else {
+                echo "Une erreur est survenue lors de l'édition de la Catégorie";
+            }
+        } else {
+            foreach($errorList as $error) {
+                echo $error ."<br>";
+            }
+        }
+    }
+
+    public function delete($id)
+    {
+        $categoryObject = Category::find($id);
+        if ($categoryObject->delete()){
+            header("Location: /category/list");
+            exit;
+        } else {
+            echo "Echec de la suppression de la catégorie";
+        }
     }
 }

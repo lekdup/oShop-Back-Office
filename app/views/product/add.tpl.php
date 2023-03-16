@@ -48,6 +48,7 @@
             <input 
             type="number" 
             class="form-control" 
+            step="0.01"
             id="price" 
             name="price" 
             placeholder="Prix" 
