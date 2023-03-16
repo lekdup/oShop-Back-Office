@@ -42,7 +42,7 @@ class CategoryController extends CoreController
         }
 
         if(empty($errorList)){
-            $category = new Category;
+            $category = new Category();
             $category->setName($name);
             $category->setSubtitle($subtitle);
             $category->setPicture($picture);

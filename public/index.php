@@ -11,6 +11,7 @@ require_once '../vendor/autoload.php';
 use App\Controllers\MainController;
 use App\Controllers\CategoryController;
 use App\Controllers\ProductController;
+use App\Controllers\LoginController;
 
 /* ------------
 --- ROUTAGE ---
@@ -139,13 +140,32 @@ $router->map(
     "product-create,"
 );
 
+//connexion -------------------------------------------------------------
+
+$router->map(
+    "GET",
+    "/login",
+    [
+        "method" => "login",
+        "controller" => LoginController::class
+    ],
+    "connection-login"
+);
+$router->map(
+    "POST",
+    "/login",
+    [
+        "method" => "connection",
+        "controller" => LoginController::class
+    ],
+    "connection-logged"
+);
 /* -------------
 --- DISPATCH ---
 --------------*/
 
 // On demande à AltoRouter de trouver une route qui correspond à l'URL courante
 $match = $router->match();
-
 // Ensuite, pour dispatcher le code dans la bonne méthode, du bon Controller
 // On délègue à une librairie externe : https://packagist.org/packages/benoclock/alto-dispatcher
 // 1er argument : la variable $match retournée par AltoRouter
