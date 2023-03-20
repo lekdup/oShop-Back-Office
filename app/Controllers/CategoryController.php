@@ -8,22 +8,26 @@ class CategoryController extends CoreController
 {
     public function list()
     {
+        $this->checkAuthorization(["admin", "catalog-manager"]);
+
         $categoryModel = new Category();
         $allCategories = $categoryModel->findAll();
         // $allCategories = Category::findAll();
         $this->show("category/list",
-    [
-        "allCategories" => $allCategories,
-    ]);
+        [
+            "allCategories" => $allCategories,
+        ]);
     }
 
     public function add()
     {
+        $this->checkAuthorization(["admin", "catalog-manager"]);
         $this->show("category/add");
     }
 
     public function create()
     {
+        $this->checkAuthorization(["admin", "catalog-manager"]);
         // $name = isset($_POST["name"]) ? $_POST["name"] : null;
         // $subtitle = isset($_POST["subtitle"]) ? $_POST["subtitle"] : null;
         // $picture = isset($_POST["picture"]) ? $_POST["picture"] : null;
@@ -65,6 +69,7 @@ class CategoryController extends CoreController
 
     public function update($id)
     {
+        $this->checkAuthorization(["admin", "catalog-manager"]);
         $categoryObject = Category::find($id);
 
         $this->show("category/edit",
@@ -74,6 +79,7 @@ class CategoryController extends CoreController
     }
     public function edit($id)
     {
+        $this->checkAuthorization(["admin", "catalog-manager"]);
         $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
         $subtitle = filter_input(INPUT_POST, "subtitle", FILTER_SANITIZE_STRING);
         $picture = filter_input(INPUT_POST, "picture", FILTER_VALIDATE_URL);
@@ -111,6 +117,7 @@ class CategoryController extends CoreController
 
     public function delete($id)
     {
+        $this->checkAuthorization(["admin", "catalog-manager"]);
         $categoryObject = Category::find($id);
         if ($categoryObject->delete()){
             header("Location: /category/list");

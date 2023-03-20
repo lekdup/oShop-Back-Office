@@ -9,6 +9,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                <?php if(isset($_SESSION["user"])) : ?>
                     <li class="nav-item">
                         <a class="nav-link active" href="<?= $router->generate("main-home") ?>">Accueil <span class="sr-only">(current)</span></a>
                     </li>
@@ -27,9 +28,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Tags</a>
                     </li>
+                    <?php if(isset($_SESSION["user"]) && $_SESSION["user"]->isAdmin()) : ?>
+                        <li class="nav-item">
+                        <a class="nav-link" href="<?= $router->generate("user-list") ?>">Utilisateur</a>
+                    </li>
+                    <?php endif ; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sélection Accueil</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $router->generate("user-logout") ?>">Déconnexion</a>
+                    </li>
+                    <?php endif ; ?>
                 </ul>
             </div>
         </div>

@@ -8,19 +8,23 @@ class ProductController extends CoreController
 {
     public function list()
     {
+        $this->checkAuthorization(["admin", "catalog-manager"]);
         $products = Product::findAll();
         $this->show("product/list",
-    [
-        "products" => $products,
-    ]);
+        [
+            "products" => $products,
+        ]);
     }
+
     public function add()
     {
+        $this->checkAuthorization(["admin", "catalog-manager"]);
         $this->show("product/add");
     }
 
     public function create()
     {
+        $this->checkAuthorization(["admin", "catalog-manager"]);
         // $name = isset($_POST["name"]) ? $_POST["name"] : null;
         // $description = isset($_POST["description"]) ? $_POST["description"] : null;
         // $picture = isset($_POST["picture"]) ? $_POST["picture"] : null;
@@ -29,7 +33,7 @@ class ProductController extends CoreController
         $name           = filter_input(INPUT_POST, "name",          FILTER_SANITIZE_SPECIAL_CHARS);
         $description    = filter_input(INPUT_POST, "description",   FILTER_SANITIZE_SPECIAL_CHARS);
         $picture        = filter_input(INPUT_POST, "picture",       FILTER_SANITIZE_URL);
-        $price          = filter_input(INPUT_POST, "price",         FILTER_SANITIZE_NUMBER_FLOAT);
+        $price          = filter_input(INPUT_POST, "price",         FILTER_VALIDATE_FLOAT);
         $rate           = filter_input(INPUT_POST, "rate",          FILTER_SANITIZE_NUMBER_INT);
         $status         = filter_input(INPUT_POST, "status",        FILTER_SANITIZE_NUMBER_INT);
         $brand_id       = filter_input(INPUT_POST, "brand_id",      FILTER_SANITIZE_NUMBER_INT);
@@ -91,5 +95,14 @@ class ProductController extends CoreController
                 echo $error . "<br>";
             }
         }
+    }
+
+    public function update($id)
+    {
+        $productObject = Product::find($id);
+        $this->show("product/edit",
+        [
+            "productObject" => $productObject,
+        ]);
     }
 }

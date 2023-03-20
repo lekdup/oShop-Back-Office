@@ -15,6 +15,7 @@ class MainController extends CoreController
      */
     public function home()
     {
+        $this->checkAuthorization(["admin", "catalog-manager"]);
         $allCategories = Category::findAll();
         $allProducts   = Product::findAll();
 
@@ -24,9 +25,9 @@ class MainController extends CoreController
         // En argument, on fournit le fichier de Vue
         // Par convention, chaque fichier de vue sera dans un sous-dossier du nom du Controller
         $this->show('main/home',
-    [
-        "categories" => $allCategories,
-        "products" => $allProducts
-    ]);
+        [
+            "categories" => $allCategories,
+            "products" => $allProducts
+        ]);
     }
 }

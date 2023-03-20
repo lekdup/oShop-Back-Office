@@ -8,10 +8,9 @@
 // mais aussi d'activer le chargement automatique des classes (convention PSR-4)
 require_once '../vendor/autoload.php';
 
+session_start();
+
 use App\Controllers\MainController;
-use App\Controllers\CategoryController;
-use App\Controllers\ProductController;
-use App\Controllers\LoginController;
 
 /* ------------
 --- ROUTAGE ---
@@ -54,112 +53,9 @@ $router->map(
     ],
     'main-home'
 );
-// category-----------------------------------------------------------
-$router->map(
-    "GET",
-    "/category/list",
-    [
-        "method" => "list",
-        "controller" => CategoryController::class
-    ],
-    "category-list"
-);
-$router->map(
-    "GET",
-    "/category/add",
-    [
-        "method" => "add",
-        "controller" => CategoryController::class
-    ],
-    "category-add"
-);
-$router->map(
-    "POST",
-    "/category/add",
-    [
-        "method" => "create",
-        "controller" => CategoryController::class,
-    ],
-    "category-create"
-);
-$router->map(
-    "GET",
-    "/category/[i:id]/update",
-    [
-        "method" => "update",
-        "controller" => CategoryController::class,
-    ],
-    "category-update",
-);
-$router->map(
-    "POST",
-    "/category/[i:id]/update",
-    [
-        "method" => "edit",
-        "controller" => CategoryController::class,
-    ],
-    "category-edit",
-);
-
-$router->map(
-    "GET",
-    "/category/[i:id]/delete",
-    [
-        "method" => "delete",
-        "controller" => CategoryController::class,
-    ],
-    "category-delete",
-);
-
-//produit--------------------------------------------------------------
-$router->map(
-    "GET",
-    "/product/list",
-    [
-        "method" => "list",
-        "controller" => ProductController::class
-    ],
-    "product-list"
-);
-$router->map(
-    "GET",
-    "/product/add",
-    [
-        "method" => "add",
-        "controller" => ProductController::class
-    ],
-    "product-add"
-);
-$router->map(
-    "POST",
-    "/product/add",
-    [
-        "method" => "create",
-        "controller" => ProductController::class
-    ],
-    "product-create,"
-);
-
-//connexion -------------------------------------------------------------
-
-$router->map(
-    "GET",
-    "/login",
-    [
-        "method" => "login",
-        "controller" => LoginController::class
-    ],
-    "connection-login"
-);
-$router->map(
-    "POST",
-    "/login",
-    [
-        "method" => "connection",
-        "controller" => LoginController::class
-    ],
-    "connection-logged"
-);
+require_once "../app/Routes/category.php";
+require_once "../app/Routes/product.php";
+require_once "../app/Routes/user.php";
 /* -------------
 --- DISPATCH ---
 --------------*/

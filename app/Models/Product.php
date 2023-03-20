@@ -276,8 +276,7 @@ class Product extends CoreModel
     public function insert()
     {
         $pdo = Database::getPDO();
-        $sql = "
-            INSERT INTO `product` (
+        $sql = "INSERT INTO `product` (
                 name, 
                 description, 
                 picture, 
@@ -286,7 +285,7 @@ class Product extends CoreModel
                 status,
                 brand_id,
                 category_id,
-                type_id,
+                type_id
             )
             VALUES (
                 :name,
@@ -297,7 +296,7 @@ class Product extends CoreModel
                 :status,
                 :brand_id,
                 :category_id,
-                :type_id,
+                :type_id
             )
         ";
 

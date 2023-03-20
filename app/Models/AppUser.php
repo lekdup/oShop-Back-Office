@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\CoreModel;
 use App\Utils\Database;
 use PDO;
 
@@ -173,7 +172,7 @@ class AppUser extends CoreModel
         $pdoStatement->bindValue(":password",   $this->password,    PDO::PARAM_STR);
         $pdoStatement->bindValue(":firstname",  $this->firstname,   PDO::PARAM_STR);
         $pdoStatement->bindValue(":lastname",   $this->lastname,    PDO::PARAM_STR);
-        $pdoStatement->bindValue(":role",       $this->role,        PDO::PARAM_INT);
+        $pdoStatement->bindValue(":role",       $this->role,        PDO::PARAM_STR);
         $pdoStatement->bindValue(":status",     $this->status,      PDO::PARAM_INT);
 
         $pdoStatement->execute();
@@ -207,7 +206,7 @@ class AppUser extends CoreModel
         $pdoStatement->bindValue(":password",   $this->password,    PDO::PARAM_STR);
         $pdoStatement->bindValue(":firstname",  $this->firstname,   PDO::PARAM_STR);
         $pdoStatement->bindValue(":lastname",   $this->lastname,    PDO::PARAM_STR);
-        $pdoStatement->bindValue(":role",       $this->role,        PDO::PARAM_INT);
+        $pdoStatement->bindValue(":role",       $this->role,        PDO::PARAM_STR);
         $pdoStatement->bindValue(":status",     $this->status,      PDO::PARAM_INT);
 
         $pdoStatement->execute();
@@ -251,5 +250,10 @@ class AppUser extends CoreModel
         ]);
 
         return $pdoStatement->fetchObject(self::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === "admin";
     }
 }

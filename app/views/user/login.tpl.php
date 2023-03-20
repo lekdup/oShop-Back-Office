@@ -11,7 +11,7 @@
             <div class="col-md-6  d-flex align-items-center">
               <div class="card-body ">
 
-                <form action="" method="POST" class="mt-1 ms-5">
+                <form action="<?= $router->generate("user-login-post") ?>" method="POST" class="mt-1 ms-5">
 
                   <div class="d-flex align-items-center pb-1">
                     <span class="h1 fw-bold mb-0">oShop</span>

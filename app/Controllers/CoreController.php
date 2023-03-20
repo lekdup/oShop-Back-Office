@@ -7,6 +7,33 @@ use App\Models\Product;
 
 class CoreController
 {
+
+    public function checkAuthorization($authorizedRoles = [])
+    {
+        if(isset($_SESSION["user"]))
+        {
+            $role = $_SESSION["user"]->getRole();
+            dump($role);
+
+            if(in_array($role, $authorizedRoles))
+            {
+                return true; 
+            }
+            else
+            {
+                $this->show("error/err404");
+                echo "403 Forbidden";
+                //todo : bonus afficher errorController
+                exit;
+            }
+        }
+        else
+        {
+            header("Location: /login");
+            exit;
+        }
+    }
+
     /**
      * Méthode permettant d'afficher du code HTML en se basant sur les views
      *
@@ -39,7 +66,7 @@ class CoreController
         // => la variable $baseUri existe désormais, et sa valeur est $_SERVER['BASE_URI']
         // => il en va de même pour chaque élément du tableau
         
-        // dump(get_defined_vars());
+        dump(get_defined_vars());
 
 
         // $viewData est disponible dans chaque fichier de vue
