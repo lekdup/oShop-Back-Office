@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\UserController;
+
 $router->map(
     "GET",
     "/login",
@@ -28,6 +29,8 @@ $router->map(
     ],
     "user-logout"
 );
+
+//-------------------------------------------------------
 
 $router->map(
     "GET",
@@ -64,6 +67,15 @@ $router->map(
         "controller" => UserController::class
     ],
     "user-update"
+);
+$router->map(
+    "POST",
+    "/user/[i:id]/update",
+    [
+        "method" => "edit",
+        "controller" => UserController::class
+    ],
+    "user-edit"
 );
 $router->map(
     "GET",

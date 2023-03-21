@@ -23,17 +23,17 @@
                                     <th scope="row"><?= $categoryObject->getId(); ?></th>
                                     <td><?= $categoryObject->getName(); ?></td>
                                     <td class="text-end">
-                                        <a href="" class="btn btn-sm btn-warning">
+                                        <a href="<?= $router->generate("category-update", ["id" => $categoryObject->getId()]) ?>" title="Modifier" class="btn btn-sm btn-warning">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </a>
                                         <!-- Example single danger button -->
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-danger dropdown-toggle"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">Oui, je veux supprimer</a>
+                                                <a class="dropdown-item" href="<?= $router->generate("category-delete", ["id" => $categoryObject->getId()]) ?>">Oui, je veux supprimer</a>
                                                 <a class="dropdown-item" href="#" data-toggle="dropdown">Oups !</a>
                                             </div>
                                         </div>
@@ -66,17 +66,17 @@
                                     <th scope="row"><?= $productObject->getId(); ?></th>
                                     <td><?= $productObject->getName(); ?></td>
                                     <td class="text-end">
-                                        <a href="" class="btn btn-sm btn-warning">
+                                        <a href="<?= $router->generate("product-update", ["id" => $productObject->getId()]) ?>" title="Modifier" class="btn btn-sm btn-warning">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </a>
                                         <!-- Example single danger button -->
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-danger dropdown-toggle"
+                                            <button type="button" title="Supprimer" class="btn btn-sm btn-danger dropdown-toggle"
                                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">Oui, je veux supprimer</a>
+                                                <a class="dropdown-item" href="<?= $router->generate("product-delete", ["id" => $productObject->getId()]) ?>">Oui, je veux supprimer</a>
                                                 <a class="dropdown-item" href="#" data-toggle="dropdown">Oups !</a>
                                             </div>
                                         </div>

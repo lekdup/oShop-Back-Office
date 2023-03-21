@@ -73,9 +73,108 @@ class UserController extends CoreController
     }
     public function create()
     {
-        $this->checkAuthorization(["admin"]);
         $errorList = [];
 
-        
+        $email      = filter_input(INPUT_POST, "email",     FILTER_VALIDATE_EMAIL);
+        $password   = filter_input(INPUT_POST, "password",  FILTER_SANITIZE_STRING);
+        $firstname  = filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_STRING);
+        $lastname   = filter_input(INPUT_POST, "lastname",  FILTER_SANITIZE_STRING);
+        $role       = filter_input(INPUT_POST, "role",      FILTER_SANITIZE_STRING);
+        $status     = filter_input(INPUT_POST, "status",    FILTER_VALIDATE_INT);
+
+        if (!$email || !$password || !$firstname || !$lastname || !$role || !$status)
+        {
+            $errorList[]= "Tous les champs sont obligatoire";
+        }
+
+        if(strlen($password) < 5)
+        {
+            $errorList[] = "le mot de passe doit faire au moins 5 caractères.";
+        }
+
+        if(empty($errorList))
+        {
+            $newUser = new AppUser();
+
+            $newUser->setRole($role);
+            $newUser->setEmail($email);
+            $newUser->setStatus($status);
+            $newUser->setLastname($lastname);
+            $newUser->setFirstname($firstname);
+
+            $newUser->setPassword(password_hash($password, PASSWORD_DEFAULT));
+        }  
+        if($newUser->save())
+        {
+            header("Location: ".$this->router->generate("user-list"));
+            exit;
+        }
+        else
+        {
+            $errorList[] = "Impossible d'ajouter l'utilisateur";
+        }
+
+        foreach($errorList as $error)
+        {
+            echo $error . "<br>";
+        }
+    }
+
+    public function update($id)
+    {
+        $userObject = AppUser::find($id);
+        $this->show("user/edit",
+        [
+            "users" => $userObject
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $email      = filter_input(INPUT_POST, "email",     FILTER_VALIDATE_EMAIL);
+        $password   = filter_input(INPUT_POST, "password",  FILTER_SANITIZE_STRING);
+        $firstname  = filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_STRING);
+        $lastname   = filter_input(INPUT_POST, "lastname",  FILTER_SANITIZE_STRING);
+        $role       = filter_input(INPUT_POST, "role",      FILTER_SANITIZE_STRING);
+        $status     = filter_input(INPUT_POST, "status",    FILTER_VALIDATE_INT);
+
+        $errorList = [];
+
+        if(!$email || !$password || !$firstname || !$lastname || !$role || !$status)
+        {
+            $errorList[]= "Tous les champs sont obligatoire !";
+        }
+
+        if (strlen($password) < 5)
+        {
+            $errorList[]= "Le mot de passe doit faire au moins 5 caractères";
+        }
+
+        if(empty($errorList))
+        {
+            $newUser = AppUser::find($id);
+
+            $newUser->setEmail($email);
+            $newUser->setFirstname($firstname);
+            $newUser->setLastname($lastname);
+            $newUser->setRole($role);
+            $newUser->setStatus($status);
+
+            $newUser->setPassword(password_hash($password, PASSWORD_DEFAULT));
+        }
+
+        if($newUser->save())
+        {
+            header("Location: /user/list");
+            exit;
+        }
+        else{
+            $errorList[]= "Impossible de modifier l'utilisateur !";
+        }
+
+        foreach($errorList as $error)
+        {
+            echo $error. "<br>";
+        }
     }
 }

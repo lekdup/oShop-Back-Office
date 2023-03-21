@@ -321,4 +321,66 @@ class Product extends CoreModel
 
         return false;
     }
+
+    public function update()
+    {
+        $pdo = Database::getPDO();
+        $pdoStatement = $pdo->prepare("UPDATE `product` SET
+                                    `name` = :name,
+                                    `description` = :description,
+                                    `picture` = :picture,
+                                    `price` = :price,
+                                    `rate` = :rate,
+                                    `status` = :status,
+                                    `brand_id` = :brand_id,
+                                    `category_id` = :category_id,
+                                    `type_id` = :type_id,
+                                    `updated_at` = NOW()
+                                    WHERE `id` = :id
+                                        ");
+        $pdoStatement->bindValue(":name",          $this->name,        PDO::PARAM_STR);
+        $pdoStatement->bindValue(":description",   $this->description, PDO::PARAM_STR);
+        $pdoStatement->bindValue(":picture",       $this->picture,     PDO::PARAM_STR);
+        $pdoStatement->bindValue(":price",         $this->price,       PDO::PARAM_STR);
+        $pdoStatement->bindValue(":rate",          $this->rate,        PDO::PARAM_INT);
+        $pdoStatement->bindValue(":status",        $this->status,      PDO::PARAM_INT);
+        $pdoStatement->bindValue(":brand_id",      $this->brand_id,    PDO::PARAM_INT);
+        $pdoStatement->bindValue(":category_id",   $this->category_id, PDO::PARAM_INT);
+        $pdoStatement->bindValue(":type_id",       $this->type_id,     PDO::PARAM_INT);
+
+        $pdoStatement->execute();
+
+        if($pdoStatement->rowCount() === 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public function save()
+    {
+        if($this->id)
+        {
+            return $this->update();
+        }
+        else
+        {
+            return $this->insert();
+        }
+    }
+
+    public function delete()
+    {
+        $pdo = Database::getPDO();
+
+        $pdoStatement = $pdo->prepare("DELETE FROM `product`
+                                        WHERE `id` = :id
+        ");
+
+        $pdoStatement->execute([
+            "id" =>$this->id
+        ]);
+
+        return $pdoStatement->rowCount() === 1;
+    }
 }

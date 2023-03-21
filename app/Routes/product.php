@@ -45,3 +45,12 @@ $router->map(
     ],
     "product-edit"
 );
+$router->map(
+    "GET",
+    "/product/[i:id]/delete",
+    [
+        "method" => "delete",
+        "controller" => ProductController::class
+    ],
+    "product-delete",
+);
