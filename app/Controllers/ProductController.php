@@ -8,7 +8,6 @@ class ProductController extends CoreController
 {
     public function list()
     {
-        $this->checkAuthorization(["admin", "catalog-manager"]);
         $products = Product::findAll();
         $this->show("product/list",
         [
@@ -18,13 +17,11 @@ class ProductController extends CoreController
 
     public function add()
     {
-        $this->checkAuthorization(["admin", "catalog-manager"]);
         $this->show("product/add");
     }
 
     public function create()
     {
-        $this->checkAuthorization(["admin", "catalog-manager"]);
         // $name = isset($_POST["name"]) ? $_POST["name"] : null;
         // $description = isset($_POST["description"]) ? $_POST["description"] : null;
         // $picture = isset($_POST["picture"]) ? $_POST["picture"] : null;

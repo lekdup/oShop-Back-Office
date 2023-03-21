@@ -4,13 +4,50 @@ namespace App\Controllers;
 
 class CoreController
 {
+    protected $router;
+    protected $match;
 
-    public function checkAuthorization($authorizedRoles = [])
+    public function __construct($router, $match)
+    {
+        $this->router = $router;
+        $this->match = $match;
+
+        $acl = [
+            "category-list"     => ["admin", "catalog-manager"],
+            "category-add"      => ["admin", "catalog-manager"],
+            "category-create"   => ["admin", "catalog-manager"],
+            "category-edit"     => ["admin", "catalog-manager"],
+            "category-update"   => ["admin", "catalog-manager"],
+            "category-delete"   => ["admin", "catalog-manager"],
+
+            "product-list"      => ["admin", "catalog-manager"],
+            "product-add"       => ["admin", "catalog-manager"],
+            "product-create"    => ["admin", "catalog-manager"],
+            "product-edit"      => ["admin", "catalog-manager"],
+            "product-update"    => ["admin", "catalog-manager"],
+            "product-delete"    => ["admin", "catalog-manager"],
+
+            "user-list"         => ["admin"],
+            "user-add"          => ["admin"],
+            "user-create"       => ["admin"],
+            "user-update"       => ["admin"],
+            "user-edit"         => ["admin"],
+            "user-delete"       => ["admin"],
+        ];
+
+        if($this->match && array_key_exists($this->match["name"], $acl))
+        {
+            $authorizedRoles = $acl[$this->match["name"]];
+            $this->checkAuthorization($authorizedRoles);
+        }
+    }
+
+    private function checkAuthorization($authorizedRoles = [])
     {
         if(isset($_SESSION["user"]))
         {
             $role = $_SESSION["user"]->getRole();
-            dump($role);
+            // dump($role);
 
             if(in_array($role, $authorizedRoles))
             {
@@ -41,7 +78,8 @@ class CoreController
     protected function show(string $viewName, $viewData = [])
     {
         // On globalise $router car on ne sait pas faire mieux pour l'instant
-        global $router;
+        // global $router;
+        $viewData["router"] = $this->router;
 
         // Comme $viewData est déclarée comme paramètre de la méthode show()
         // les vues y ont accès

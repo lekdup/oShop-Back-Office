@@ -59,7 +59,6 @@ class UserController extends CoreController
 
     public function list()
     {
-        $this->checkAuthorization(["admin"]);
         // récupérer la list des users
         $allUsers = AppUser::findAll();
         $this->show("user/list", [
@@ -68,7 +67,6 @@ class UserController extends CoreController
     }
     public function add()
     {
-        $this->checkAuthorization(["admin"]);
         $this->show("user/add");
     }
     public function create()

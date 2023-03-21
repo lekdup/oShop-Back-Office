@@ -5,6 +5,7 @@ namespace App\Controllers;
 // Si j'ai besoin du Model Category
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\CoreModel;
 
 class MainController extends CoreController
 {
@@ -15,7 +16,6 @@ class MainController extends CoreController
      */
     public function home()
     {
-        $this->checkAuthorization(["admin", "catalog-manager"]);
         $allCategories = Category::findAll();
         $allProducts   = Product::findAll();
 
