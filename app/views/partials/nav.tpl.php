@@ -34,7 +34,7 @@
                     </li>
                     <?php endif ; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sélection Accueil</a>
+                        <a class="nav-link" href="<?= $router->generate("home-order") ?>">Sélection Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= $router->generate("user-logout") ?>">Déconnexion</a>

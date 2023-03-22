@@ -141,7 +141,7 @@ class Category extends CoreModel
      *
      * @return Category[]
      */
-    public function findAllHomepage()
+    static public function findAllHomepage()
     {
         $pdo = Database::getPDO();
         $sql = '

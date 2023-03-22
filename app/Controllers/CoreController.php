@@ -13,6 +13,8 @@ class CoreController
         $this->match = $match;
 
         $acl = [
+            "main-home"         => ["admin", "catalog-manager"],
+            
             "category-list"     => ["admin", "catalog-manager"],
             "category-add"      => ["admin", "catalog-manager"],
             "category-create"   => ["admin", "catalog-manager"],
@@ -33,6 +35,9 @@ class CoreController
             "user-update"       => ["admin"],
             "user-edit"         => ["admin"],
             "user-delete"       => ["admin"],
+
+            "home-order"        => ["admin", "catalog-manager"],
+            "home-order-update" => ["admin", "catalog-manager"],
         ];
 
         if($this->match && array_key_exists($this->match["name"], $acl))

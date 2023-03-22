@@ -56,6 +56,7 @@ $router->map(
 require_once "../app/Routes/category.php";
 require_once "../app/Routes/product.php";
 require_once "../app/Routes/user.php";
+require_once "../app/Routes/home-order.php";
 /* -------------
 --- DISPATCH ---
 --------------*/

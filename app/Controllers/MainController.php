@@ -5,7 +5,6 @@ namespace App\Controllers;
 // Si j'ai besoin du Model Category
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\CoreModel;
 
 class MainController extends CoreController
 {
