@@ -26,7 +26,7 @@ class Brand extends CoreModel
      * @param int $brandId ID de la marque
      * @return Brand
      */
-    public function find($brandId)
+    public static function find($brandId)
     {
         // se connecter à la BDD
         $pdo = Database::getPDO();
@@ -121,6 +121,24 @@ class Brand extends CoreModel
 
         // On retourne VRAI, si au moins une ligne ajoutée
         return ($updatedRows > 0);
+    }
+
+    public function save() {
+        if ($this->id){
+            return $this->update();
+        } else {
+            return $this->insert();
+        }
+    }
+
+    public function delete() {
+        $pdo = Database::getpdo();
+        $pdoStatement = $pdo->prepare("DELETE FROM `brand` WHERE `id` = :id");
+        $pdoStatement->execute([
+            "id" => $this->id
+        ]);
+
+        return $pdoStatement->rowCount() === 1;
     }
 
     /**

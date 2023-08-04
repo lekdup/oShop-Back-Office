@@ -1,4 +1,3 @@
-
 <div class="container my-4">
     <a href="<?= $router->generate("category-list") ?>" class="btn btn-success float-end">Retour</a>
     <h2>Ajouter une catégorie</h2>

@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\Product;
+use App\Models\Tag;
 use App\Controllers\CoreController;
 
 class ProductController extends CoreController
@@ -27,8 +28,8 @@ class ProductController extends CoreController
         // $picture = isset($_POST["picture"]) ? $_POST["picture"] : null;
         // $price = isset($_POST["price"]) ? $_POST["price"] : null;
 
-        $name           = filter_input(INPUT_POST, "name",          FILTER_SANITIZE_SPECIAL_CHARS);
-        $description    = filter_input(INPUT_POST, "description",   FILTER_SANITIZE_SPECIAL_CHARS);
+        $name           = htmlspecialchars($_POST["name"]);
+        $description    = htmlspecialchars($_POST["description"]);
         $picture        = filter_input(INPUT_POST, "picture",       FILTER_SANITIZE_URL);
         $price          = filter_input(INPUT_POST, "price",         FILTER_VALIDATE_FLOAT);
         $rate           = filter_input(INPUT_POST, "rate",          FILTER_SANITIZE_NUMBER_INT);
@@ -80,7 +81,7 @@ class ProductController extends CoreController
             $product->setCategoryId($category_id);
             $product->setTypeId($type_id);
 
-            if($product->insert()){
+            if($product->save()){
                 header("Location: /product/list");
                 exit;
             } else {
@@ -97,6 +98,9 @@ class ProductController extends CoreController
     public function update($id)
     {
         $productObject = Product::find($id);
+
+        $productTagList = Tag::findAllForProduct($id);
+
         $this->show("product/edit",
         [
             "productObject" => $productObject,

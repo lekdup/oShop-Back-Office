@@ -57,12 +57,15 @@ require_once "../app/Routes/category.php";
 require_once "../app/Routes/product.php";
 require_once "../app/Routes/user.php";
 require_once "../app/Routes/home-order.php";
+require_once "../app/Routes/brand.php";
+require_once "../app/Routes/type.php";
 /* -------------
 --- DISPATCH ---
 --------------*/
 
 // On demande à AltoRouter de trouver une route qui correspond à l'URL courante
 $match = $router->match();
+// dump($router->match()["name"]);
 // Ensuite, pour dispatcher le code dans la bonne méthode, du bon Controller
 // On délègue à une librairie externe : https://packagist.org/packages/benoclock/alto-dispatcher
 // 1er argument : la variable $match retournée par AltoRouter

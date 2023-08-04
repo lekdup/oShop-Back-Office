@@ -22,6 +22,27 @@ class CoreController
             "category-update"   => ["admin", "catalog-manager"],
             "category-delete"   => ["admin", "catalog-manager"],
 
+            "brand-list"     => ["admin", "catalog-manager"],
+            "brand-add"      => ["admin", "catalog-manager"],
+            "brand-create"   => ["admin", "catalog-manager"],
+            "brand-edit"     => ["admin", "catalog-manager"],
+            "brand-update"   => ["admin", "catalog-manager"],
+            "brand-delete"   => ["admin", "catalog-manager"],
+
+            "type-list"     => ["admin", "catalog-manager"],
+            "type-add"      => ["admin", "catalog-manager"],
+            "type-create"   => ["admin", "catalog-manager"],
+            "type-edit"     => ["admin", "catalog-manager"],
+            "type-update"   => ["admin", "catalog-manager"],
+            "type-delete"   => ["admin", "catalog-manager"],
+
+            "tag-list"     => ["admin", "catalog-manager"],
+            "tag-add"      => ["admin", "catalog-manager"],
+            "tag-create"   => ["admin", "catalog-manager"],
+            "tag-edit"     => ["admin", "catalog-manager"],
+            "tag-update"   => ["admin", "catalog-manager"],
+            "tag-delete"   => ["admin", "catalog-manager"],
+
             "product-list"      => ["admin", "catalog-manager"],
             "product-add"       => ["admin", "catalog-manager"],
             "product-create"    => ["admin", "catalog-manager"],
@@ -52,7 +73,7 @@ class CoreController
         if(isset($_SESSION["user"]))
         {
             $role = $_SESSION["user"]->getRole();
-            // dump($role);
+            // dump($_SESSION);
 
             if(in_array($role, $authorizedRoles))
             {
@@ -83,7 +104,7 @@ class CoreController
     protected function show(string $viewName, $viewData = [])
     {
         // On globalise $router car on ne sait pas faire mieux pour l'instant
-        // global $router;
+        global $router;
         $viewData["router"] = $this->router;
 
         // Comme $viewData est déclarée comme paramètre de la méthode show()
@@ -106,7 +127,7 @@ class CoreController
         // => la variable $baseUri existe désormais, et sa valeur est $_SERVER['BASE_URI']
         // => il en va de même pour chaque élément du tableau
         
-        dump(get_defined_vars());
+        // dump(get_defined_vars());
 
 
         // $viewData est disponible dans chaque fichier de vue

@@ -26,7 +26,7 @@ class Type extends CoreModel
      * @param int $typeId ID du type
      * @return Type
      */
-    public function find($typeId)
+    public static function find($typeId)
     {
         // se connecter à la BDD
         $pdo = Database::getPDO();
@@ -57,6 +57,46 @@ class Type extends CoreModel
         $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'App\Models\Type');
 
         return $results;
+    }
+
+    public function insert() {
+        $pdo = Database::getPDO();
+        $sql = "INSERT INTO `type` (name) VALUES ('{$this->name}')";
+        $insertedRows = $pdo->exec($sql);
+
+        if ($insertedRows > 0) {
+            $this->id = $pdo->lastInsertId();
+            return true;
+        }
+
+        return false;
+    }
+
+    public function update() {
+        $pdo = Database::getPDO();
+        $sql = "UPDATE `type` SET name = '{$this->name}', updated_at = NOW() WHERE id = {$this->id}";
+
+        $updatedRows = $pdo->exec($sql);
+
+        return ($updatedRows > 0);
+    }
+
+    public function delete() {
+        $pdo = Database::getPDO();
+        $pdoStatement = $pdo->prepare("DELETE FROM `type` WHERE `id` = :id");
+        $pdoStatement->execute([
+            "id" => $this->id
+        ]);
+
+        return $pdoStatement->rowCount() === 1;
+    }
+
+    public function save() {
+        if ($this->id) {
+            return $this->update();
+        } else {
+            return $this->insert(); 
+        }
     }
 
     /**

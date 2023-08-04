@@ -15,7 +15,7 @@ $router->map(
     "POST",
     "/home/order",
     [
-        "method" => "update-order",
+        "method" => "updateOrder",
         "controller" => HomeOrderController::class
     ],
     "home-order-update"

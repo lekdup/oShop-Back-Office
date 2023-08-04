@@ -10,3 +10,11 @@ Pour cela, le lien vers le Trello de chaque cockpit se trouve dans [docs/product
 ## Serveur PHP intégré
 
 Pour faire tourner notre site cette saison, on va utiliser le serveur de développement intégré à PHP, en lieu et place de notre serveur Apache habituel. Pour bien comprendre ce que ça va changer, on vous invite à [lire la doc](docs/serveur_de_dev_php.md). :wink:
+
+:information_source: **Comptes utilisateurs pour les tests**
+  
+| Email                | Mot de passe | Rôle            |
+|:--------------------:|:------------:|:---------------:|
+| `philippe@oclock.io` | `rocknroll`  | admin           |
+| `lucie@oclock.io`    | `cameleon`   | admin           |
+| `nicole@oclock.io`   | `onews`      | catalog-manager |
