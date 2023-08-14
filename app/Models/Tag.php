@@ -33,39 +33,22 @@ class Tag extends CoreModel
         $this->name = $name;
     }
 
-    /**
-     * Méthode permettant de récupérer un enregistrement de la table tag en fonction d'un id donné
-     *
-     * @param int $tagId ID de la catégorie
-     * @return tag
-     */
     static public function find($tagId)
     {
-        // se connecter à la BDD
         $pdo = Database::getPDO();
-
-        // écrire notre requête
         $sql = 'SELECT * FROM `tag` WHERE `id` =' . $tagId;
-
-        // exécuter notre requête
         $pdoStatement = $pdo->prepare($sql);
 
         $pdoStatement->bindValue(":id", $tagId, PDO::PARAM_INT);
 
         $pdoStatement->execute();
 
-        // un seul résultat => fetchObject
         $tag = $pdoStatement->fetchObject( self::class );
 
         // retourner le résultat
         return $tag;
     }
 
-    /**
-     * Méthode permettant de récupérer tous les enregistrements de la table tag
-     *
-     * @return tag[]
-     */
     static public function findAll()
     {
         $pdo            = Database::getPDO();
@@ -77,11 +60,6 @@ class Tag extends CoreModel
     }
 
 
-    /**
-     * Méthode permettant de récupérer tous les enregistrements de la table tag
-     *
-     * @return tag[]
-     */
     static public function findAllForProduct($productID)
     {
         $pdo            = Database::getPDO();

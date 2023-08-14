@@ -1,4 +1,7 @@
-
+<?php 
+// var_dump($router);  
+// var_dump($products);
+?>
 <div class="container my-4">
         <a href="<?= $router->generate("product-add") ?>" class="btn btn-success float-end">Ajouter</a>
         <h2>Liste des produits</h2>
@@ -18,7 +21,7 @@
                 <tr>
                     <th scope="row"><?= $product->getId(); ?></th>
                     <td><?= $product->getName(); ?></td>
-                    <td><img src="<?= $product->getPicture(); ?>" alt=""></td>
+                    <td><img src="/<?= $product->getPicture(); ?>" alt=""></td>
                     <td><?= $product->getDescription(); ?></td>
                     <td><?= $product->getPrice(); ?> €</td>
                     <td class="text-end">

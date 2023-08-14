@@ -93,21 +93,10 @@ class Category extends CoreModel
         $this->home_order = $home_order;
     }
 
-    /**
-     * Méthode permettant de récupérer un enregistrement de la table Category en fonction d'un id donné
-     *
-     * @param int $categoryId ID de la catégorie
-     * @return Category
-     */
     static public function find($categoryId)
     {
-        // se connecter à la BDD
         $pdo = Database::getPDO();
-
-        // écrire notre requête
         $sql = 'SELECT * FROM `category` WHERE `id` =' . $categoryId;
-
-        // exécuter notre requête
         $pdoStatement = $pdo->prepare($sql);
 
         $pdoStatement->bindValue(":id", $categoryId, PDO::PARAM_INT);
@@ -120,12 +109,6 @@ class Category extends CoreModel
         // retourner le résultat
         return $category;
     }
-
-    /**
-     * Méthode permettant de récupérer tous les enregistrements de la table category
-     *
-     * @return Category[]
-     */
     static public function findAll()
     {
         $pdo = Database::getPDO();
@@ -136,11 +119,6 @@ class Category extends CoreModel
         return $results;
     }
 
-    /**
-     * Récupérer les 5 catégories mises en avant sur la home
-     *
-     * @return Category[]
-     */
     static public function findAllHomepage()
     {
         $pdo = Database::getPDO();

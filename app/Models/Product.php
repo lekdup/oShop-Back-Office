@@ -5,10 +5,6 @@ namespace App\Models;
 use App\Utils\Database;
 use PDO;
 
-/**
- * Une instance de Product = un produit dans la base de données
- * Product hérite de CoreModel
- */
 class Product extends CoreModel
 {
 
@@ -49,26 +45,15 @@ class Product extends CoreModel
      */
     private $type_id;
 
-    /**
-     * Méthode permettant de récupérer un enregistrement de la table Product en fonction d'un id donné
-     *
-     * @param int $productId ID du produit
-     * @return Product
-     */
     static public function find($productId)
     {
-        // récupérer un objet PDO = connexion à la BDD
         $pdo = Database::getPDO();
 
-        // on écrit la requête SQL pour récupérer le produit
+        // la requête SQL pour récupérer le produit
         $sql = '
             SELECT *
             FROM product
             WHERE id = ' . $productId;
-
-        // query ? exec ?
-        // On fait de la LECTURE = une récupration => query()
-        // si on avait fait une modification, suppression, ou un ajout => exec
         $pdoStatement = $pdo->query($sql);
 
         // fetchObject() pour récupérer un seul résultat
@@ -78,11 +63,6 @@ class Product extends CoreModel
         return $result;
     }
 
-    /**
-     * Méthode permettant de récupérer tous les enregistrements de la table product
-     *
-     * @return Product[]
-     */
     static public function findAll()
     {
         $pdo = Database::getPDO();
