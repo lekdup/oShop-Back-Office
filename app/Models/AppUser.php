@@ -162,6 +162,8 @@ class AppUser extends CoreModel
     {
         $pdo = Database::getPDO();
 
+        // $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
+
         $sql = "INSERT INTO `app_user` (email, password, firstname, lastname, role, status)
                 VALUES (:email, :password, :firstname, :lastname, :role, :status)
         ";
