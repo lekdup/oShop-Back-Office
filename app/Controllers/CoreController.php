@@ -51,10 +51,10 @@ class CoreController
             "product-delete"    => ["admin", "catalog-manager"],
 
             "user-list"         => ["admin"],
-            "user-add"          => ["admin"],
-            "user-create"       => ["admin"],
-            "user-update"       => ["admin"],
-            "user-edit"         => ["admin"],
+            // "user-add"          => ["admin"],
+            // "user-create"       => ["admin"],
+            "user-update"       => ["admin", "catalog-manager"],
+            "user-edit"         => ["admin", "catalog-manager"],
             "user-delete"       => ["admin"],
 
             "home-order"        => ["admin", "catalog-manager"],

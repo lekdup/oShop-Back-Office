@@ -318,6 +318,7 @@ class Product extends CoreModel
                                     `updated_at` = NOW()
                                     WHERE `id` = :id
                                         ");
+
         $pdoStatement->bindValue(":name",          $this->name,        PDO::PARAM_STR);
         $pdoStatement->bindValue(":description",   $this->description, PDO::PARAM_STR);
         $pdoStatement->bindValue(":picture",       $this->picture,     PDO::PARAM_STR);
@@ -327,6 +328,7 @@ class Product extends CoreModel
         $pdoStatement->bindValue(":brand_id",      $this->brand_id,    PDO::PARAM_INT);
         $pdoStatement->bindValue(":category_id",   $this->category_id, PDO::PARAM_INT);
         $pdoStatement->bindValue(":type_id",       $this->type_id,     PDO::PARAM_INT);
+        $pdoStatement->bindValue(":id",             $this->id,         PDO::PARAM_INT);
 
         $pdoStatement->execute();
 

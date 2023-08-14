@@ -208,6 +208,7 @@ class AppUser extends CoreModel
         $pdoStatement->bindValue(":lastname",   $this->lastname,    PDO::PARAM_STR);
         $pdoStatement->bindValue(":role",       $this->role,        PDO::PARAM_STR);
         $pdoStatement->bindValue(":status",     $this->status,      PDO::PARAM_INT);
+        $pdoStatement->bindValue(":id",         $this->id,          PDO::PARAM_INT);
 
         $pdoStatement->execute();
 

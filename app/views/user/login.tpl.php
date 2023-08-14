@@ -44,7 +44,7 @@
                   </div>
 
                   <a class="small text-muted" href="#!">Forgot password?</a>
-                  <p class="mb-0 mt-3 text-muted">Don't have an account? <a href="#!" class="text-muted">Register here</a></p>
+                  <p class="mb-0 mt-3 text-muted">Don't have an account? <a href="<?= $router->generate("user-add")?>" class="text-muted">Register here</a></p>
                 </form>
 
               </div>

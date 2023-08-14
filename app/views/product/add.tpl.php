@@ -7,7 +7,7 @@
     
     <h2>Ajouter un produit</h2>
 
-    <form action="" method="POST" class="mt-5">
+    <form action="<?= $router->generate("product-create") ?>" method="POST" class="mt-5">
         <div class="mb-3">
             <label for="name">Nom</label>
             <input 

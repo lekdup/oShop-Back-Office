@@ -25,7 +25,7 @@ $router->map(
         "method" => "create",
         "controller" => ProductController::class
     ],
-    "product-create,"
+    "product-create"
 );
 $router->map(
     "GET",

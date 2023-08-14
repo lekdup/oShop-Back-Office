@@ -123,7 +123,7 @@ class UserController extends CoreController
         $userObject = AppUser::find($id);
         $this->show("user/edit",
         [
-            "users" => $userObject
+            "userObject" => $userObject
         ]);
     }
 

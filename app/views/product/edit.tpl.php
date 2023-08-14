@@ -6,7 +6,7 @@
     
     <h2>Modifier un produit</h2>
 
-    <form action="" method="POST" class="mt-5">
+    <form action="<?= $router->generate("product-edit", ["id" => $productObject->getId()]); ?>" method="POST" class="mt-5">
         <div class="mb-3">
             <label for="name">Nom</label>
             <input 

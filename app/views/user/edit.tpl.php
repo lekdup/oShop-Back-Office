@@ -5,7 +5,7 @@
 
   <h2>Ajouter un utilisateur</h2>
   
-  <form action="<?= $router->generate('user-create'); ?>" method="POST" class="mt-5">
+  <form action="<?= $router->generate('user-edit', ["id" => $userObject->getId()]); ?>" method="POST" class="mt-5">
   
     <div class="mb-3">
       <label for="email" class="form-label">
@@ -16,7 +16,7 @@
         class="form-control" 
         id="email" 
         name="email" 
-        value="<?= $users->getEmail(); ?>"
+        value="<?= $userObject->getEmail(); ?>"
         placeholder="Adresse e-mail"
       >
     </div>
@@ -30,7 +30,7 @@
         class="form-control" 
         id="password" 
         name="password" 
-        value="<?= $users->getPassword(); ?>"
+        value="<?= $userObject->getPassword(); ?>"
         placeholder="Mot de passe"
       >
     </div>
@@ -44,7 +44,7 @@
         class="form-control" 
         id="lastname" 
         name="lastname" 
-        value="<?= $users->getLastname() ?>"
+        value="<?= $userObject->getLastname() ?>"
         placeholder="Nom"
       >
     </div>
@@ -58,7 +58,7 @@
         class="form-control" 
         id="firstname" 
         name="firstname" 
-        value="<?= $users->getFirstname() ?>"
+        value="<?= $userObject->getFirstname() ?>"
         placeholder="Prénom"
       >
     </div>
@@ -71,10 +71,10 @@
         <option value="0">
           Sélectionner un rôle
         </option>
-        <option value="catalog-manager" <?php if($users->getRole() === "catalog-manager") {echo "selected"; } ?>>
+        <option value="catalog-manager" <?php if($userObject->getRole() === "catalog-manager") {echo "selected"; } ?>>
           Catalog Manager
         </option>
-        <option value="admin" <?php if($users->getRole() === "admin") {echo "selected"; } ?>>
+        <option value="admin" <?php if($userObject->getRole() === "admin") {echo "selected"; } ?>>
           Admin
         </option>
       </select>
@@ -88,10 +88,10 @@
         <option value="0">
           Sélectionner un status
         </option>
-        <option value="1" <?php if($users->getStatus() == 1) {echo "selected"; } ?>>
+        <option value="1" <?php if($userObject->getStatus() == 1) {echo "selected"; } ?>>
           Actif
         </option>
-        <option value="2" <?php if($users->getStatus() == 2) {echo "selected"; } ?>>
+        <option value="2" <?php if($userObject->getStatus() == 2) {echo "selected"; } ?>>
           Désactivé
         </option>
       </select>
